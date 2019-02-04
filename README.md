@@ -5,13 +5,19 @@ There are some bad UUID generators out there, hopefully this makes it easier to 
 
 # usage
 
-```./(node|php)_collide.bash [algorithm] [uuids_per_execution] [num_executions]```
+```
+./(node|php)_collide.bash [algorithm] [uuids_per_execution] [num_executions]
+```
 
 ## Example
 
-```./node_collide.bash ./constant.js 5 7```
+```
+./node_collide.bash ./constant.js 5 7
+```
 will have an output of:
-```35 'js000000-uuid-4000-0000-constant0000'```
+```
+35 'js000000-uuid-4000-0000-constant0000'
+```
 
 ## Constant
 
