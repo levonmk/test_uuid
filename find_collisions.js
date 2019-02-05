@@ -9,14 +9,16 @@ process.stdin
     if(!/^\w{8}-\w{4}-4\w{3}-\w{4}-\w{12}$/.test(data)){
       console.log(`Invalid UUIDv4: <${data}>`);
     }
-    acc[data] = (acc[data] || 0) + 1;
-    return acc;
-  }, {})).on('data', data => {
-    for ( const key in data ) {
-      const count = data[key];
-      if (count > 1) {
-        console.log(count, key);
+    return {
+      previous: data,
+      collisions: {
+        ...acc.collisions,
+        ...(data === acc.previous ? {[data]: (acc.collisions[data] || 1) + 1} : {})
       }
+    };
+  }, {})).on('data', data => {
+    for ( const key in data.collisions ) {
+      console.log(data.collisions[key], key);
     }
   });
 
